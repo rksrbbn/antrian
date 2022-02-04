@@ -7,7 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <style>
+        body {
+            background-image: url('<?= base_url('assets/') ?>img/bg.jpg');
+            background-size: cover;
+            background-clip: content-box;
+        }
+    </style>
     <title><?= $title; ?></title>
 
     <!-- Custom fonts for this template-->
@@ -16,10 +22,11 @@
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url('assets/'); ?>css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
 
 <body>
-    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div>
             <a href="<?= base_url('antrian') ?>">back</a>
             <?php if ($this->session->has_userdata('pesan')) : ?>
@@ -27,7 +34,6 @@
                     <?= $this->session->flashdata('pesan'); ?>
                 </div>
             <?php endif; ?>
-
             <?php if ($this->session->has_userdata('error')) : ?>
                 <div class="alert alert-danger" role="alert">
                     <?= $this->session->flashdata('error'); ?>
