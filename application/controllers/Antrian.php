@@ -13,16 +13,23 @@ class Antrian extends CI_Controller
 
     public function index()
     {
-        unset($_SESSION['pesan']);
-        unset($_SESSION['error']);
-        $data['title'] = 'form';
+        // unset($_SESSION['pesan']);
+        // unset($_SESSION['error']);
+        $data['title'] = 'Form Antrian';
+
+        // Get Nomor Antrian
         $data['antrian'] = $this->antrian_model->getAntrian() + 1;
         $data['faskes'] = $this->antrian_model->getFaskes();
+
+        // Get Timestamp
         $data['ts'] = $this->antrian_model->timer()->ts;
         $var = strtotime($data['ts']);
+
+        // Get Waktu/Tanggal Hari ini
         $date_now = date('Y-m-d');
         $date = strtotime($date_now);
 
+        // Cek jika hari sudah berganti
         if ($var < $date) {
             // echo ('Terhapus');
             $this->antrian_model->deleteTimestamp();
@@ -65,7 +72,9 @@ class Antrian extends CI_Controller
 
         $antrian = $this->antrian_model->getAntrian();
         if ($this->form_validation->run() == true) {
-            if ($antrian < 3) {
+
+            // Cek antrian sudah penuh atau belum
+            if ($antrian < 1) {
                 $data['nik'] = $this->input->post('nik');
                 $data['nama_pasien'] = $this->input->post('Nama');
                 $data['alamat'] = $this->input->post('Alamat');
@@ -74,17 +83,19 @@ class Antrian extends CI_Controller
                 $data['id_faskes'] = $this->input->post('faskes');
 
                 // $this->antrian_model->save($data);
+
+                // Save data ke database
                 $this->db->insert('tbl_pasien', $data);
                 $this->session->set_flashdata('pesan', 'Data berhasil di simpan');
 
                 $last_id = $this->db->insert_id();
 
                 $data['info'] = $this->antrian_model->getById($last_id);
-                $data['title'] = 'output';
+                $data['title'] = 'Antrian';
                 $this->load->view('success', $data);
             } else {
                 $this->session->set_flashdata('error', 'Antrian sudah penuh!');
-                $data['title'] = 'output';
+                $data['title'] = 'Antrian';
                 $this->load->view('failed', $data);
             }
         } else {

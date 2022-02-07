@@ -43,7 +43,7 @@ class Antrian_model extends CI_Model
 
     public function makeTimestamp()
     {
-        $sql = "INSERT INTO SessionInfo (session, state, ts) VALUES ('test', '1', current_timestamp());";
+        $sql = "INSERT INTO SessionInfo (session, state, ts) VALUES ('today', '1', current_timestamp());";
         return $this->db->query($sql);
     }
 
