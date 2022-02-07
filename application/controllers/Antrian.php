@@ -18,6 +18,18 @@ class Antrian extends CI_Controller
         $data['title'] = 'form';
         $data['antrian'] = $this->antrian_model->getAntrian() + 1;
         $data['faskes'] = $this->antrian_model->getFaskes();
+        $data['ts'] = $this->antrian_model->timer()->ts;
+        $var = strtotime($data['ts']);
+        $date_now = date('Y-m-d');
+        $date = strtotime($date_now);
+
+        if ($var < $date) {
+            // echo ('Terhapus');
+            $this->antrian_model->deleteTimestamp();
+            $this->antrian_model->makeTimestamp();
+        } else {
+            // echo ('BELUM SAATNYA');
+        }
         $this->load->view('form2', $data);
     }
 
@@ -49,23 +61,15 @@ class Antrian extends CI_Controller
                 'required' => "Kolom %s harus diisi."
             )
         );
-        $this->form_validation->set_rules(
-            'Tanggal',
-            'Tanggal',
-            'required',
-            array(
-                'required' => "Kolom %s harus diisi."
-            )
-        );
         $this->form_validation->set_rules('antrian', 'antrian', 'required');
 
         $antrian = $this->antrian_model->getAntrian();
         if ($this->form_validation->run() == true) {
-            if ($antrian < 10) {
+            if ($antrian < 3) {
                 $data['nik'] = $this->input->post('nik');
                 $data['nama_pasien'] = $this->input->post('Nama');
                 $data['alamat'] = $this->input->post('Alamat');
-                $data['tgl_datang'] = $this->input->post('Tanggal');
+                $data['tgl_datang'] = date('Y-m-d');
                 $data['no_antrian'] = $this->input->post('antrian');
                 $data['id_faskes'] = $this->input->post('faskes');
 

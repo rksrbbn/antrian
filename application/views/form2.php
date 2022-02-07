@@ -59,7 +59,7 @@
           <label for="tanggal">Tanggal Datang</label>
           <small class="text-red-500"><?= form_error('Tanggal'); ?></small>
         </div>
-        <input type="date" class="rounded py-1 px-3 t focus:outline-blue-300 text-gray-400 <?= form_error('Tanggal') ? 'border border-red-500' : '' ?>" id="tanggal" name="Tanggal" />
+        <input type="text" class="rounded py-1 px-3 bg-gray-600 bg-opacity-20 focus:outline-blue-300 text-gray-400 <?= form_error('Tanggal') ? 'border border-red-500' : '' ?>" id="tanggal" value="<?= date('Y-m-d'); ?>" name="Tanggal" readonly/>
       </div>
 
       <!-- Antrian -->
