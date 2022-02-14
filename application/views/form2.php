@@ -23,7 +23,13 @@
 <body>
 
   <!-- Container -->
-  <div class="min-h-screen flex justify-center items-center px-10 md:px-24">
+  <div class="min-h-screen flex flex-col justify-center items-center px-10 md:px-24 space-y-2">
+
+    <!-- Header -->
+    <div class="bg-white px-4 py-2 rounded w-full lg:w-1/2 flex justify-between items-center">
+      <a href="<?=base_url('dashboard'); ?>" class="text-blue-500">back</a>
+      <span class="text-teal-400 font-semibold text-base">Daftar Antrian</span>
+    </div>
 
     <!-- Form -->
     <form action="<?= site_url('antrian/save'); ?>" method="post" class="w-full lg:w-1/2 space-y-5 text-gray-400 rounded-md shadow-xl p-4 bg-white bg-opacity-20 backdrop-blur-xl">

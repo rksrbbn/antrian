@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/tailwind.css" />
+    <!-- fontawesome-->
+    <link href="<?= base_url('assets/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <title>Output</title>
 </head>
 
@@ -15,6 +17,9 @@
         <!-- notification -->
         <div class="bg-green-300 lg:w-1/2 px-2 py-1 rounded shadow-sm text-green-900">
             <p class="text-center">Berhasil Mendaftar</p>
+        </div>
+        <div class="bg-yellow-300 lg:w-1/2 px-2 flex items-center justify-center py-1 rounded shadow-sm text-green-900">
+            <i class="fas fa-print"></i><button onclick="window.print()">Print</button>
         </div>
 
         <!-- making card using tailwindcss -->

@@ -38,7 +38,7 @@
 
       <!-- Right -->
       <div class="flex items-center space-x-4 text-blue-600 font-semibold">
-        <a href="<?= site_url('antrian/index'); ?>" class="p-4 rounded transition duration-200 hover:bg-slate-100">Daftar</a>
+        <a href="<?= site_url('antrian'); ?>" class="p-4 rounded transition duration-200 hover:bg-slate-100">Daftar</a>
         <a href="#cek" class="p-4 rounded transition duration-200 hover:bg-slate-100">Cek Antrian</a>
       </div>
     </nav>
@@ -46,6 +46,8 @@
     <!-- Content -->
     <div class="flex justify-center items-center mt-36">
       <div class="text-center space-y-4">
+
+        <!-- Header Text -->
         <div class="py-24">
           <h1 class="text-4xl font-bold text-teal-500 rounded p-4">
             Daftar Antrian Online!
@@ -59,6 +61,8 @@
             Laboriosam dolores soluta eos amet magnam similique?
           </p>
         </div>
+
+        <!-- Cek Antrian Text -->
         <div class="py-24" id="cek">
           <h1 class="text-4xl font-bold text-teal-500 rounded p-4">
             Cari Antrian Online!
@@ -67,13 +71,17 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
             porro commodi ducimus.
           </p>
-          <form action="success.html" method="get" class="flex justify-center mt-16">
-            <div class="flex justify-center items-center bg-white shadow-xl px-5 rounded-full">
+
+          <!-- Searchbar -->
+          <form action="<?= base_url('dashboard/cek') ?>" method="post" class="flex justify-center mt-16">
+            <div class="flex justify-center items-center bg-white shadow-xl px-5 rounded-full <?= form_error('nik') ? 'border border-red-500' : '' ?>">
               <i class="fas fa-search text-xl text-gray-600"></i>
               <input type="text" placeholder="Cari Antrian Dengan NIK" class="focus:outline-none p-3" name="nik" />
               <input type="submit" value="Cari" class="hover:cursor-pointer text-blue-500" />
             </div>
           </form>
+          <small class="text-red-500"><?= form_error('nik'); ?></small>
+
         </div>
       </div>
       <div></div>

@@ -40,6 +40,34 @@ class Antrian extends CI_Controller
         $this->load->view('form2', $data);
     }
 
+    // public function cek()
+    // {
+    //     $this->form_validation->set_rules(
+    //         'nik',
+    //         'NIK',
+    //         'required|integer',
+    //         array(
+    //             'required' => "Kolom %s harus diisi.",
+    //             'is_unique' => "%s ini sudah terdaftar.",
+    //             'integer' => "%s harus berupa angka."
+    //         )
+    //     );
+
+    //     // Cek validasi
+    //     if ($this->form_validation->run() == true) {
+    //         $data['nik'] = $this->input->post('nik');
+    //         $data['result'] = $this->antrian_model->getByNIK($data['nik']);
+
+    //         // var_dump($data['nik'], $data['result']);
+    //         // die;
+    //         $data['title'] = 'Cek Antrian';
+    //         $this->load->view('cek', $data);
+    //     } else {
+    //         // load view dashboard
+    //         redirect('dashboard');
+    //     }
+    // }
+
     public function save()
     {
         $this->form_validation->set_rules(
@@ -74,7 +102,7 @@ class Antrian extends CI_Controller
         if ($this->form_validation->run() == true) {
 
             // Cek antrian sudah penuh atau belum
-            if ($antrian < 1) {
+            if ($antrian < 10) {
                 $data['nik'] = $this->input->post('nik');
                 $data['nama_pasien'] = $this->input->post('Nama');
                 $data['alamat'] = $this->input->post('Alamat');

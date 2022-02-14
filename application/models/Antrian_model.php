@@ -28,6 +28,13 @@ class Antrian_model extends CI_Model
         // return $this->db->get_where($this->table, ["id" => $id])->result();
     }
 
+    public function getByNIK($nik)
+    {
+        $sql = "SELECT nik, nama_pasien, alamat, no_antrian, tgl_datang, nama_faskes FROM tbl_pasien INNER JOIN tbl_faskes ON tbl_pasien.id_faskes = tbl_faskes.id_faskes WHERE tbl_pasien.nik = $nik";
+        return $this->db->query($sql)->result();
+        // return $this->db->get_where($this->table, ["id" => $id])->result();
+    }
+
     public function timer()
     {
         $sql = 'SELECT * FROM sessioninfo';
